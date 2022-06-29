@@ -24,4 +24,14 @@ public class InVoiceGeneratorTest {
         double totalFare = inVoiceGenerator.totalFare();
         Assert.assertEquals(185, totalFare, 0.0);
     }
+    @Test
+    public void givenDistanceAndTime_ForMultipleRides_ShouldReturnInVoiceBill() {
+        InVoiceGenerator inVoiceGenerator = new InVoiceGenerator();
+        inVoiceGenerator.addRide(4, 15);
+        inVoiceGenerator.addRide(10, 30);
+        InVoiceBill inVoiceBill = inVoiceGenerator.getInVoiceBill();
+        InVoiceBill expectedBill =  new InVoiceBill(2, 185, 92);
+        Assert.assertEquals(expectedBill, inVoiceBill);
+
+    }
 }
